@@ -1,1 +1,2 @@
-# state-a-base
+# Simpleton State Manager
+...
