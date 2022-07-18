@@ -10,19 +10,7 @@ export default class SimpletonStateManager {
   constructor() {
     if (!SimpletonStateManager.instance) {
       SimpletonStateManager.instance = this;
-
-      const handler = {
-        get(target, prop, receiver) {
-          return Reflect.get(target, prop, receiver);
-        },
-        set(obj, prop, value) {
-          Reflect.set(obj, prop, value);
-          SimpletonStateManager.instance.modelChanged(prop);
-          return true;
-        },
-      };
-
-      this.modelsProxy = new Proxy(this.#models, handler);
+      this.modelsProxy = new Proxy(this.#models, SimpletonStateManager.proxyHandler);
     } else {
       return SimpletonStateManager.instance;
     }
@@ -31,6 +19,17 @@ export default class SimpletonStateManager {
   static getInstance() {
     return new SimpletonStateManager();
   }
+
+  static proxyHandler = {
+    get(target, prop, receiver) {
+      return Reflect.get(target, prop, receiver);
+    },
+    set(obj, prop, value) {
+      Reflect.set(obj, prop, value);
+      SimpletonStateManager.instance.modelChanged(prop);
+      return true;
+    },
+  };
 
   setModel(modelName, model, immutable = false) {
     //console.log('setModel', modelName, model, immutable);
@@ -100,6 +99,7 @@ export default class SimpletonStateManager {
     this.#models = {};
     this.#subscribers = {};
     this.#immutables = {};
+    this.modelsProxy = new Proxy(this.#models, SimpletonStateManager.proxyHandler);
   }
 
   modelChanged(modelName) {
