@@ -9,34 +9,29 @@ describe('SimpletonStateManager', () => {
     expect(store).toBeInstanceOf(SimpletonStateManager);
   });
  
-  /* Whenever you instanciate a SimpletonStateManager, by constructor or the static getInstance method
-     you get the same static instance */
+  /* Whenever you instanciate a SimpletonStateManager, you get the same static instance */
 
   test('SimpletonStateManager instance is a Singleton', () => {;
     const storeOne = new SimpletonStateManager();
     const storeTwo = new SimpletonStateManager();
-    const storeThree = SimpletonStateManager.getInstance();
     expect(storeOne).toBe(storeTwo); //toBe check that the Objects are equal BY REFERENCE (same memory pointer)
-    expect(storeTwo).toBe(storeThree);
   });
 
-  /*  We store an array model awhich by default is MUTABLE. When we getModel and 
-      pushing new elements it does affect the original Model */
-
-      test('Model Array should be NOT be immutable', () => {
-        const store = new SimpletonStateManager();
-        const original = ['aaa', 'bbb'];
-        store.setModel(MODEL_NAME, original);
-        const arr = store.getModel(MODEL_NAME);
-        arr.push('ccc');
-        const arr2 = store.getModel(MODEL_NAME);
-        expect(arr2.length).toEqual(3);
-        expect(arr.length).toEqual(3);
-      });
+  /*  We store an array model which by default is MUTABLE. When we getModel() and 
+      push a new element it should affect the original Model */
+    test('Model Array should be NOT be immutable', () => {
+      const store = new SimpletonStateManager();
+      const original = ['aaa', 'bbb'];
+      store.setModel(MODEL_NAME, original);
+      const arr = store.getModel(MODEL_NAME);
+      arr.push('ccc');
+      const arr2 = store.getModel(MODEL_NAME);
+      expect(arr2.length).toEqual(3);
+      expect(arr.length).toEqual(3);
+    });
 
   /*  We store an array model and set it as immutable. When we getModel we get a clone of the 
       Array so pushing new elements does NOT affect the original Model */
-
   test('Model Array should be immutable', () => {
     const store = new SimpletonStateManager();
     const original = ['aaa', 'bbb'];
@@ -48,10 +43,44 @@ describe('SimpletonStateManager', () => {
     expect(arr.length).toEqual(3);
   });
 
+  /* test subscriptions */
+  test('subscribe to model, get and set model', () => {
+    const store = new SimpletonStateManager();
+    const subscribeCallback = jest.fn();
+    store.subscribe(MODEL_NAME, 'name', subscribeCallback);
+    store.setModel(MODEL_NAME, { name: 'sample' });
+    let sampleModel = store.getModel(MODEL_NAME);
+    expect(sampleModel.name).toEqual('sample');
+    store.setModel(MODEL_NAME, { name: 'changed_name' });
+    sampleModel = store.getModel(MODEL_NAME);
+    expect(sampleModel.name).toEqual('changed_name');
+    expect(subscribeCallback).toBeCalledTimes(2);
+  });
+
   test('outputs the  model list', () => {
     const store = new SimpletonStateManager();
-    const model = { name: 'sample' };
-    store.setModel(MODEL_NAME, model);
-    console.log('Models:', store.getModelList());
+
+    const modelOne = { name: 'modelOne' };
+    store.setModel('modelOne', modelOne);
+
+    const modelTwo = { name: 'modelTwo' };
+    store.setModel('modelTwo', modelTwo);
+
+    const models = store.getModelList();
+    expect(Object.keys(models).length).toEqual(3);
+  });
+
+  test('unsubscribeAll and outputs the model list', () => {
+    const store = new SimpletonStateManager();
+    store.unsubscribeAll();
+
+    const modelOne = { name: 'modelOne' };
+    store.setModel('modelOne', modelOne);
+
+    const modelTwo = { name: 'modelTwo' };
+    store.setModel('modelTwo', modelTwo);
+
+    const models = store.getModelList();
+    expect(Object.keys(models).length).toEqual(2);
   });
 });
