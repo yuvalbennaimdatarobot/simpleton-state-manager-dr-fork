@@ -16,7 +16,6 @@ describe('SimpletonStateManager', () => {
     const storeTwo = new SimpletonStateManager();
     expect(storeOne).toBe(storeTwo); //toBe check that the Objects are equal BY REFERENCE (same memory pointer)
   });
-
  
   /*  We store an array model and set it as immutable. When we getModel we get a clone of the 
       Array so pushing new elements does not affect the original Model */

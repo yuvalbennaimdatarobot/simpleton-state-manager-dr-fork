@@ -5,19 +5,15 @@ export default class SimpletonStateManager {
   #subscribers = {}; //privare member
 
   constructor() {
-    if (!SimpletonStateManager.instance) {
+    if (!SimpletonStateManager.instance) { //Singleton
       SimpletonStateManager.instance = this;
-      this.modelsProxy = new Proxy(this.#models, SimpletonStateManager.proxyHandler);
+      this.modelsProxy = new Proxy(this.#models, this.proxyHandler);
     } else {
       return SimpletonStateManager.instance;
     }
   }
 
-  static getInstance() {
-    return new SimpletonStateManager();
-  }
-
-  static proxyHandler = {
+  proxyHandler = {
     get(target, prop, receiver) {
       return Reflect.get(target, prop, receiver);
     },
@@ -81,7 +77,7 @@ export default class SimpletonStateManager {
   unsubscribeAll() {
     this.#models = {};
     this.#subscribers = {};
-    this.modelsProxy = new Proxy(this.#models, SimpletonStateManager.proxyHandler);
+    this.modelsProxy = new Proxy(this.#models, this.proxyHandler);
   }
 
   modelChanged(modelName) {
