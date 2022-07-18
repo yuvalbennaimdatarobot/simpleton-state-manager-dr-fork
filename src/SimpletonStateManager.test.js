@@ -17,25 +17,13 @@ describe('SimpletonStateManager', () => {
     expect(storeOne).toBe(storeTwo); //toBe check that the Objects are equal BY REFERENCE (same memory pointer)
   });
 
-  /*  We store an array model which by default is MUTABLE. When we getModel() and 
-      push a new element it should affect the original Model */
-    test('Model Array should be NOT be immutable', () => {
-      const store = new SimpletonStateManager();
-      const original = ['aaa', 'bbb'];
-      store.setModel(MODEL_NAME, original);
-      const arr = store.getModel(MODEL_NAME);
-      arr.push('ccc');
-      const arr2 = store.getModel(MODEL_NAME);
-      expect(arr2.length).toEqual(3);
-      expect(arr.length).toEqual(3);
-    });
-
+ 
   /*  We store an array model and set it as immutable. When we getModel we get a clone of the 
-      Array so pushing new elements does NOT affect the original Model */
+      Array so pushing new elements does not affect the original Model */
   test('Model Array should be immutable', () => {
     const store = new SimpletonStateManager();
     const original = ['aaa', 'bbb'];
-    store.setModel(MODEL_NAME, original, true); //immutable
+    store.setModel(MODEL_NAME, original); //immutable
     const arr = store.getModel(MODEL_NAME);
     arr.push('ccc');
     const arr2 = store.getModel(MODEL_NAME);
@@ -43,7 +31,7 @@ describe('SimpletonStateManager', () => {
     expect(arr.length).toEqual(3);
   });
 
-  /* test subscriptions */
+  /* test subscription handler */
   test('subscribe to model, get and set model', () => {
     const store = new SimpletonStateManager();
     const subscribeCallback = jest.fn();
@@ -57,29 +45,25 @@ describe('SimpletonStateManager', () => {
     expect(subscribeCallback).toBeCalledTimes(2);
   });
 
+  /* any previously stored models will display along with the new ones added here*/
   test('outputs the  model list', () => {
     const store = new SimpletonStateManager();
-
     const modelOne = { name: 'modelOne' };
     store.setModel('modelOne', modelOne);
-
     const modelTwo = { name: 'modelTwo' };
     store.setModel('modelTwo', modelTwo);
-
     const models = store.getModelList();
-    expect(Object.keys(models).length).toEqual(3);
+    expect(Object.keys(models).length).toBeGreaterThanOrEqual(3);
   });
 
+  /* clears the previously stored models and sets new ones, so only those should be accounted for */
   test('unsubscribeAll and outputs the model list', () => {
     const store = new SimpletonStateManager();
     store.unsubscribeAll();
-
     const modelOne = { name: 'modelOne' };
     store.setModel('modelOne', modelOne);
-
     const modelTwo = { name: 'modelTwo' };
     store.setModel('modelTwo', modelTwo);
-
     const models = store.getModelList();
     expect(Object.keys(models).length).toEqual(2);
   });

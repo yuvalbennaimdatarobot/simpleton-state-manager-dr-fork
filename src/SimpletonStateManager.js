@@ -1,11 +1,8 @@
 
 export default class SimpletonStateManager {
   static instance = null;
-
-  //private members
-  #models = {}; 
-  #immutables = {};
-  #subscribers = {};
+  #models = {}; //private member
+  #subscribers = {}; //privare member
 
   constructor() {
     if (!SimpletonStateManager.instance) {
@@ -31,13 +28,7 @@ export default class SimpletonStateManager {
     },
   };
 
-  setModel(modelName, model, immutable = false) {
-    //console.log('setModel', modelName, model, immutable);
-
-    if(immutable) {
-      this.#immutables[modelName] = modelName;
-    }
-
+  setModel(modelName, model) {
     this.modelsProxy[modelName] = model;
   }
 
@@ -45,27 +36,19 @@ export default class SimpletonStateManager {
     this.modelChanged(modelName);
   }
 
-  isImmutable(modelName) {
-    return this.#immutables[modelName] != null;
-  }
-
   getModel(modelName) {
     const model = this.modelsProxy[modelName];
-    //console.log('getModel', modelName, model);
+    const isArr = model instanceof Array;
+    const isObj = model instanceof Object;
 
-    if(this.isImmutable(modelName)) { //return copy of model
-      const isArr = model instanceof Array;
-      const isObj = model instanceof Object;
-
-      if (model != null) {
-        if (!isObj) {
-          return model;
-        } if (isArr) {
-          const copy = JSON.parse(JSON.stringify(model));
-          return JSON.parse(JSON.stringify(model));
-        } 
-        return { ...model };
-      }
+    if (model != null) {
+      if (!isObj) {
+        return model;
+      } if (isArr) {
+        const copy = JSON.parse(JSON.stringify(model));
+        return JSON.parse(JSON.stringify(model));
+      } 
+      return { ...model };
     }
 
     return model;
@@ -98,7 +81,6 @@ export default class SimpletonStateManager {
   unsubscribeAll() {
     this.#models = {};
     this.#subscribers = {};
-    this.#immutables = {};
     this.modelsProxy = new Proxy(this.#models, SimpletonStateManager.proxyHandler);
   }
 
