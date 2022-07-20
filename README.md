@@ -9,11 +9,6 @@ Tired of the heaveyweight, bloated State machines like Redux ? This is your answ
 
 
 
-To loosely qoute from one of the greatest movie of all time (highly opinionated statement) Princess Bride: "Life is pain, highness. Anyone who says differently is selling something."
-
-
-
-
 The SimpletonStateManager is a generic, framework agnostic utility that will help you manage you WebApplication's State no matter how complex it gets.
 And until JavaScript becomes a multi-threaded language, is probably all you will need.
 
