@@ -66,7 +66,7 @@ The subscriber names must be **uniquely qualified** as sometimes you will have s
 If for some reason (like a refresh) you want to explicitly notify all the Subscribers of a particualr model:
 
 ```javascript
-  notifyModelListeners('modelOne'); //all the Model's subscribers will be notified
+  store.notifyModelListeners('modelOne'); //all the Model's subscribers will be notified
 ```
 
 ### Unscubscribing
