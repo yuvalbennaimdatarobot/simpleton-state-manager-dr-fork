@@ -80,7 +80,7 @@ You can unsubscribe by name:
 ```javascript
   store.unsubscribe(modelName, subscriberName);
 ```
-Or brut force to purge all data:
+Or brute force to purge all data:
 
 ```javascript
   store.unsubscribeAll();
