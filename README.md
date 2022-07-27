@@ -37,7 +37,7 @@ Be advised, there is no "updateModel" operation. Registering a new Model with th
   store.setModel('modelOne', modelOne);
 ```
 
-#####Getting a Model
+#### Getting a Model
 
 Use the SimpletonStateManager instance to explicitly obtain a clone of the stored Model. The stored models are immutable and you are never getting the actual reference:
 
@@ -95,8 +95,6 @@ To help debuging your state
   console.log('All the Models', models);
 ```
 
-
-
 ## Installation
 
 This repo is not yet published to NPM.
@@ -106,3 +104,7 @@ All you need to do is to copy the SimpletonStatManager.js file directly into you
 npm install simpleton-state-manager
 ``` 
 -->
+
+## Examples
+
+Under Construction...
