@@ -37,7 +37,7 @@ Be advised, there is no "updateModel" operation. Registering a new Model with th
   store.setModel('modelOne', modelOne);
 ```
 
-#### Getting a Model
+### Getting a Model
 
 Use the SimpletonStateManager instance to explicitly obtain a clone of the stored Model. The stored models are immutable and you are never getting the actual reference:
 
@@ -69,7 +69,7 @@ If for some reason (like a refresh) you want to explicitly notify all the Subscr
   store.notifyModelListeners('modelOne'); //all the Model's subscribers will be notified
 ```
 
-#### Unsubscribing
+### Unsubscribing
 
 As with any event listeners, you should clean up your models and subscribers when they are no longer needed or in scope. 
 This is typically done when the components is removed from the DOM (dismounts), or you have an internal navigation event.
