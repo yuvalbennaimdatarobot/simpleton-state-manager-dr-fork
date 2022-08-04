@@ -20,13 +20,13 @@ Once you instanciate a SimpletonStateManager you can use it to store an almost l
 retrieve it and subscribe to changes in a Model.
 
 
-### Instanciating a SimpletonStateManager
+#### Instanciating a SimpletonStateManager
 
 ```javascript
   const store = new SimpletonStateManager(); //everyone gets the same static instance
 ```
 
-### Setting a Model
+#### Setting a Model
 
 Models are any Javascript Entity (Object, Array, Fucntion or primitive)
 Whether you construct a new Model, or obtain it from an API call or by any other means you use the SimpletonStateManager to register this Model with a **unique name**.
@@ -46,7 +46,7 @@ Use the SimpletonStateManager instance to explicitly obtain a clone of the store
   //do whatever you want to do with this model like render the UI
 ```
 
-### Subscribing to Model Changes
+###### Subscribing to Model Changes
 
 To be notified when a model is created or modified, you subscribe to a model by it's name, provide a unique subscriber name and a callback function.
 The subscriber names must be **uniquely qualified** as sometimes you will have several instances of the same component in a list.
@@ -61,7 +61,7 @@ The subscriber names must be **uniquely qualified** as sometimes you will have s
   }));
 ```
 
-### Notifying Subscribers
+#### Notifying Subscribers
 
 If for some reason (like a refresh) you want to explicitly notify all the Subscribers of a particular model:
 
@@ -86,7 +86,7 @@ Or brute force to purge all data:
   store.unsubscribeAll();
 ```
 
-### Getting All Models
+#### Getting All Models
 
 A handy convenience function to help you debug your state:
 
