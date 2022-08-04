@@ -46,7 +46,7 @@ Use the SimpletonStateManager instance to explicitly obtain a clone of the store
   //do whatever you want to do with this model like render the UI
 ```
 
-### Subscribing to Model Changes
+#### Subscribing to Model Changes
 
 To be notified when a model is created or modified, you subscribe to a model by it's name, provide a unique subscriber name and a callback function.
 The subscriber names must be **uniquely qualified** as sometimes you will have several instances of the same component in a list.
