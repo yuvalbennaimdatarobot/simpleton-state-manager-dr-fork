@@ -33,7 +33,7 @@ Whether you construct a new Model, or obtain it from an API call or by any other
 Be advised, there is no "updateModel" operation. Registering a new Model with the same name will overwrite the existing Model and notify all subscribers.
 
 ```javascript
-  const modelOne = { name: 'modelOne', value": 3 };
+  const modelOne = { name: 'modelOne', value: 3 };
   store.setModel('modelOne', modelOne);
 ```
 
