@@ -1,4 +1,4 @@
-# Simpleton State Manager
+# Simpleton State Manager - WORK IN PROGRESS!
 
 A super simple State Manager for your modern Web Application.
 In fact, it's so simple, that simple is in it's name.
@@ -7,7 +7,7 @@ Whether you use an MVC framework such as React, Angular, Vue, WebComponents or p
 this universal, lightweight solution is all you need to manage your Application's Frontend state, no matter how complex it gets.
 
 
-## The fundametals
+## The Fundametals
 
 This State Manager is a plain JavaScript class which follows the Singleton Design Pattern.
 There is ever only a single instance of the class that is constructed per a browser window context.
