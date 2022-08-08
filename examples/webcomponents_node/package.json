@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "dev": "nodemon server.js --ignore 'client/*'",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "~4.15.2",
+    "nodemon": "^1.11.0"
+  }
+}
