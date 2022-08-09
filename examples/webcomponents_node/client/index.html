@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SampleApp</title>
+        <!-- <script type="module" src="./js/SimpletonStateManager.js"></script> -->
+        <script type="module" src="./js/sample-app.js"></script>
+
+        <script type="module">
+            import SimpletonStateManager from "./js/SimpletonStateManager.js";
+
+            (() => {
+                const store = new SimpletonStateManager(); 
+                const modelOne = { name: 'modelOne', value: 2 };
+                store.setModel('modelOne', modelOne);
+                const models = store.getModelList();
+                console.log('init...', models);
+            })();
+        </script>
+    </head>
+
+    <body>
+        Welcome to the Sample App.
+
+        This example will demonstrate how to use the StateManager in the simplest form
+        of Plain Javascript and WebComponents
+
+        The SimpletonStateManager is imported as an ES6 Module.
+        You could remove the "export default" and then import it a s a non-module
+
+        <sample-app></sample-app>
+    </body>
+</html>
+
+

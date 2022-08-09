@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "dev": "nodemon server.js --ignore 'client/*'",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "simpleton-state-manager": "latest",
+    "express": "~4.15.2",
+    "nodemon": "^1.11.0"
+  }
+}

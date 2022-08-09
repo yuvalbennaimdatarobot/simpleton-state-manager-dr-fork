@@ -1,4 +1,4 @@
-# Simpleton State Manager
+# Simpleton State Manager - WORK IN PROGRESS!
 
 A super simple State Manager for your modern Web Application.
 In fact, it's so simple, that simple is in it's name.
@@ -7,7 +7,7 @@ Whether you use an MVC framework such as React, Angular, Vue, WebComponents or p
 this universal, lightweight solution is all you need to manage your Application's Frontend state, no matter how complex it gets.
 
 
-## The fundametals
+## The Fundametals
 
 This State Manager is a plain JavaScript class which follows the Singleton Design Pattern.
 There is ever only a single instance of the class that is constructed per a browser window context.
@@ -20,20 +20,20 @@ Once you instanciate a SimpletonStateManager you can use it to store an almost l
 retrieve it and subscribe to changes in a Model.
 
 
-#### Instanciating a SimpletonStateManager
+### Instanciating a SimpletonStateManager
 
 ```javascript
   const store = new SimpletonStateManager(); //everyone gets the same static instance
 ```
 
-#### Setting a Model
+### Setting a Model
 
 Models are any Javascript Entity (Object, Array, Fucntion or primitive)
 Whether you construct a new Model, or obtain it from an API call or by any other means you use the SimpletonStateManager to register this Model with a **unique name**.
 Be advised, there is no "updateModel" operation. Registering a new Model with the same name will overwrite the existing Model and notify all subscribers.
 
 ```javascript
-  const modelOne = { name: 'modelOne', value": 3 };
+  const modelOne = { name: 'modelOne', value: 3 };
   store.setModel('modelOne', modelOne);
 ```
 
@@ -46,7 +46,7 @@ Use the SimpletonStateManager instance to explicitly obtain a clone of the store
   //do whatever you want to do with this model like render the UI
 ```
 
-###### Subscribing to Model Changes
+### Subscribing to Model Changes
 
 To be notified when a model is created or modified, you subscribe to a model by it's name, provide a unique subscriber name and a callback function.
 The subscriber names must be **uniquely qualified** as sometimes you will have several instances of the same component in a list.
@@ -61,7 +61,7 @@ The subscriber names must be **uniquely qualified** as sometimes you will have s
   }));
 ```
 
-#### Notifying Subscribers
+### Notifying Subscribers
 
 If for some reason (like a refresh) you want to explicitly notify all the Subscribers of a particular model:
 
@@ -86,7 +86,7 @@ Or brute force to purge all data:
   store.unsubscribeAll();
 ```
 
-#### Getting All Models
+### Getting All Models
 
 A handy convenience function to help you debug your state:
 
@@ -97,13 +97,13 @@ A handy convenience function to help you debug your state:
 
 ## Installation
 
-This repo is not yet published to NPM.
-All you need to do is to copy the SimpletonStatManager.js file directly into your project's folder and import it using relative path
+This repo is now published to NPM.
 
-<!-- ```
+For the simplest use case all you need to do is to copy the SimpletonStatManager.js file directly into your project's folder and import it using relative path
+
+```javascript
 npm install simpleton-state-manager
-``` 
--->
+```
 
 ## Examples
 
