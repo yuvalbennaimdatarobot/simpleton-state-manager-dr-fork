@@ -97,13 +97,12 @@ A handy convenience function to help you debug your state:
 
 ## Installation
 
-This repo is not yet published to NPM.
-All you need to do is to copy the SimpletonStatManager.js file directly into your project's folder and import it using relative path
+This repo is now published to NPM.
 
-<!-- ```
+For the simplest use case all you need to do is to copy the SimpletonStatManager.js file directly into your project's folder and import it using relative path
+
 npm install simpleton-state-manager
-``` 
--->
+
 
 ## Examples
 
