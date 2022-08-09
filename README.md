@@ -101,8 +101,9 @@ This repo is now published to NPM.
 
 For the simplest use case all you need to do is to copy the SimpletonStatManager.js file directly into your project's folder and import it using relative path
 
+```javascript
 npm install simpleton-state-manager
-
+```
 
 ## Examples
 
