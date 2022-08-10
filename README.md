@@ -20,7 +20,6 @@ retrieve them as needed and subscribe to their changes.
 
 You can even store functions as models.
 
-
 ### Instanciating a SimpletonStateManager
 
 ```javascript
