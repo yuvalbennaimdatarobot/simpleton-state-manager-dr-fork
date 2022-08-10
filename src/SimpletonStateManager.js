@@ -38,7 +38,10 @@ class SimpletonStateManager {
     const isObj = model instanceof Object;
 
     if (model != null) {
-      if (!isObj) {
+      if(model instanceof Function) {
+        return model;
+      }
+      else if (!isObj) {
         return model;
       } if (isArr) {
         const copy = JSON.parse(JSON.stringify(model));
