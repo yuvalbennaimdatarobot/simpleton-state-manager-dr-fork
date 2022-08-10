@@ -1,5 +1,5 @@
 
-export default class SimpletonStateManager {
+class SimpletonStateManager {
   static instance = null;
   #models = {}; //private member
   #subscribers = {}; //privare member
