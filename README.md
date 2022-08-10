@@ -13,12 +13,12 @@ This State Manager is a plain JavaScript class which follows the Singleton Desig
 There is ever only a single instance of the class that is constructed per a browser window context.
 Every invokation of the constructor returns the very same object reference.
 
-The Models are stored in the class's private member (identified by the "#" prefix) that is protectd from the outside code and is accessed exclusively through a
-Proxy object.
+The Models are stored in the class's private member (identified by the "#" prefix) that is protectd from the outside code and is accessed exclusively through a Proxy object.
 
 Once you instanciate a SimpletonStateManager you can use it to store an almost limitless amount of individual Models, 
-retrieve it and subscribe to changes in a Model.
+retrieve them as needed and subscribe to their changes.
 
+You can even store functions as models.
 
 ### Instanciating a SimpletonStateManager
 
