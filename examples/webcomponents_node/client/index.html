@@ -10,17 +10,24 @@
                 const store = new SimpletonStateManager(); 
                 const modelOne = { name: 'modelOne', value: 1 };
                 store.setModel('modelOne', modelOne);
+
+                store.setModel('funcOne', function() {
+                    console.log('funcOne says hello');
+                });
                 
                 /*simulate request with latency*/
                 const modelMaker = new Promise(function(resolveFunc, rejectFunc) {
                     const model = { name: 'modelOne', value: 9 };
-                    setTimeout(function(){ resolveFunc(model); }, 3000);
+                    setTimeout(function(){ resolveFunc(model); }, 5000);
                 });
 
                 modelMaker.then(function(value) {
                     store.setModel('modelMaker', value);
                     const models = store.getModelList();
                     console.log('Models', models);
+
+                    const func = store.getModel('funcOne');
+                    func();
                 });
             })();
 
